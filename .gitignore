@@ -1,0 +1,9 @@
+# backup files
+*~
+
+# eclipse project files
+.project
+.cproject
+
+# pycharm project directory
+.idea
