@@ -7,3 +7,6 @@
 
 # pycharm project directory
 .idea
+
+# python byte code
+*.pyc
