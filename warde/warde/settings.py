@@ -65,14 +65,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': os.path.join(BASE_DIR, 'wardedb.db'),
-    },
-    'default2': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'wardedb',
-        'USER': 'root',  # todo fuck yeah!
-        'PASSWORD': 'root',
-
     }
+    
 }
 
 # Internationalization
