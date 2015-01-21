@@ -12,5 +12,6 @@ urlpatterns = patterns('',
     url(r'^logout/', views.logout_auth),
     url(r'^secret-login/', views.secret_login),
     url(r'^algo/', views.algotest),
+    url(r'^archive/', views.archive),
     url(r'^admin/', include(admin.site.urls)),
 )

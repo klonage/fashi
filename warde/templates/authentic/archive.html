@@ -1,0 +1,108 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Bootswatch: Cosmo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static "css/bootstrap.css" %}" media="screen">
+    <link rel="stylesheet" href="{% static "css/bootswatch.min.css" %}">
+      <style>
+          .interactive_image
+          {
+          }
+
+          .interactive_image:hover{
+          box-shadow: 0px 0px 5px #888888;
+          cursor:pointer;
+          }
+}
+      </style>
+<script>
+    function load_big_image(url, type, description, style, address)
+    {
+    // todo
+document.getElementById('big_url').src = url;
+document.getElementById('big_type').innerHTML = type;
+document.getElementById('big_description').innerHTML = description;
+document.getElementById('big_style').innerHTML = style;
+document.getElementById('big_address').href = address;
+    }
+</script>
+  </head>
+  <body>
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="/" class="navbar-brand">Recommend me something!</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="/"></a>
+            </li>
+            <li>
+              <a href="/archive">My wardrobe</a>
+            </li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a>Hello {{ user.username }}!</a></li>
+            <li><a href="/logout">Log out</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="big_type"></h4>
+      </div>
+      <div class="modal-body">
+          <center>
+        <img id="big_url" width="500">
+              </center>
+      </div>
+        <div class="modal-footer" style="text-align:left">
+            <b>Opis:</b> <span id="big_description"></span><br />
+            <b>Typ:</b> <span id="big_style"></span> <br />
+            <a id="big_address">Przejdź do elementu w sklepie internetowym</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container" style="padding-top:40px;">
+        <center>
+            <table>
+            <tr>
+        {% for clothes in matches %}
+                {% if forloop.counter0|divisibleby:3 %}
+            </tr><tr>
+            {% endif %}
+        <td style="padding:30px">
+            <img width=150 class='interactive_image' onclick="load_big_image(this.src, '{{ clothes.type }}', '{{ clothes.description }}', '{{ clothes.style.first }}', '{{ clothes.address }}');" src="{{ clothes.images.first }}"  data-toggle="modal" data-target="#myModal">
+        </td>
+        {% endfor %}
+            </tr>
+            </table></center>
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+  <script src="{% static "js/bootswatch.js" %}"></script>
+
+  </body>
+</html>

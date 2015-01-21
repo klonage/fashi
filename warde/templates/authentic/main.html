@@ -206,7 +206,7 @@ body {
     <div class="cover-container">
       <div class="masthead clearfix">
         <div class="inner">
-          <h3 class="masthead-brand">Logo</h3>
+          <h3 class="masthead-brand"></h3>
 <!--
           <ul class="nav masthead-nav">
             <li class="active">
@@ -225,8 +225,9 @@ body {
         </div>
       </div>
 
-      <div class="inner cover" style="color:#FFFFFF">
-        <h1 class="cover-heading">Fashi</h1>
+      <div class="inner cover" style="color:#000000">
+          <div style="background:rgba(255, 255, 255, 0.5); margin:100px; padding:10px;">
+        <h1 class="cover-heading"><img src="{% static "images/logo1.png" %}" width=100></h1>
         <p class="lead">Znajdź ubrania idealnie pasujące do Ciebie!</p>
           <form method="post" action="/register/" id="registerform"> {% csrf_token %}
               <div class="radio">
@@ -254,8 +255,6 @@ body {
   </script>
 
                       <tr><td>{{ preferredstyle.name }}:</td><td><input type="text" class="span2" data-slider-min="0" data-slider-step="1" data-slider-max="10" data-slider-tooltip="hide" value="5" name="ps{{preferredstyle.name}}" id="sl1{{preferredstyle.id }}" ></td></tr>
-
-                      <!--<option value="{{ preferredstyle.id }}">{{ preferredstyle.name }}-->
                           {% endfor %}
                   </table></center>
                   <!--</select>-->
@@ -265,6 +264,7 @@ body {
                      onclick="document.getElementById('registerform').submit();">Join us!</a>
               </p>
           </form>
+              </div>
       </div>
 
       <div class="mastfoot">

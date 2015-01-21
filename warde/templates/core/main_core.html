@@ -7,13 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static "css/bootstrap.css" %}" media="screen">
     <link rel="stylesheet" href="{% static "css/bootswatch.min.css" %}">
+      <style>
+          .rndmy {
+          border-radius: 10px;
+          width:190px;
+          }
+      </style>
 
   </head>
   <body>
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="../" class="navbar-brand">Bootswatch</a>
+          <a href="/" class="navbar-brand">Recommend me something!</a>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -22,16 +28,11 @@
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Themes <span class="caret"></span></a>
-              <ul class="dropdown-menu" aria-labelledby="themes">
-                <li><a href="../default/">Default</a></li>
-                <li class="divider"></li>
-                <li><a href="../cerulean/">Cerulean</a></li>
-              </ul>
+            <li>
+              <a href="/"></a>
             </li>
             <li>
-              <a href="http://news.bootswatch.com">My wardrobe</a>
+              <a href="/archive">My wardrobe</a>
             </li>
           </ul>
 
@@ -46,9 +47,22 @@
 
 
     <div class="container">
-
-
-
+        <div style="padding:50px">
+            <center>
+                <img width="400" src="{{ selected_item.images.first.address }}"><br />
+                <button class="btn btn-success rndmy" type="button">Kupuję to!</button>
+                <button class="btn btn-info rndmy" type="button">Już mam taki produkt!</button>
+                <button class="btn btn-danger rndmy" style="background-color:#C9302C" type="button">Nie podoba mi się to!</button>
+            </center>
+            <br />
+            <div style="margin-left:350px">
+                <b>Kategoria: </b>  {{ selected_item.type }} <br />
+                <b>Styl: </b>  {{ selected_item.style.first }} <br />
+                <b>Dla: </b>  <script>var sss = "{{ selected_item.gender.first }}"; document.write(sss.substring(0, sss.length - 1));</script> <br />
+                <b>Opis: </b> {{ selected_item.description }} <br />
+                <a href="{{ selected_item.address }}">Przejdź do sklepu</a>
+            </div>
+        </div>
     </div>
 
 
