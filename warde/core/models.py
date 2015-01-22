@@ -35,11 +35,14 @@ class Picture(models.Model):
 class ClothesItem(models.Model):
     color = models.IntegerField()
     type = models.ForeignKey(ItemType)
-    gender = models.ManyToManyField(Gender)
-    style = models.ManyToManyField(Style)
+    gender = models.ForeignKey(Gender)
+    style = models.ForeignKey(Style)
     description = models.TextField()
     images = models.ManyToManyField(Picture, blank=True)
+    itemname = models.CharField(max_length=30, blank=True)
     address = models.URLField()
+    price = models.FloatField()
+    display = models.BooleanField(default=True)
 
 
 class UserInfo(models.Model):
