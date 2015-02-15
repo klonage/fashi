@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ "$(whoami)" != "root" ]
+then 
+    echo "run script with root privileges!"
+    exit
+fi
+
+apt-get update
+update-alternatives --install /usr/bin/python python /usr/bin/python3 10
+pip install Django==1.7.4

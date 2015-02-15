@@ -10,3 +10,6 @@
 
 # python byte code
 *.pyc
+
+# sqlite3 database
+db.sqlite3
