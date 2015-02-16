@@ -13,3 +13,6 @@
 
 # sqlite3 database
 db.sqlite3
+
+# vagrant stuff
+.vagrant
