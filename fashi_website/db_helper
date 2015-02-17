@@ -1,0 +1,34 @@
+#!/bin/bash
+
+function check_existence {
+    if [ ! -e $1 ]
+    then
+	echo "File $1 doesn't exist"
+	exit
+    fi 
+}
+
+DEFAULT_DB_FILENAME=db.sqlite3
+DEFAULT_DUMP_FILENAME=db_dump.sql
+DEFAULT_COMMAND=unknown
+command=${1-$DEFAULT_COMMAND}
+db_filename=${2-$DEFAULT_DB_FILENAME}
+dump_filename=${3-$DEFAULT_DUMP_FILENAME}
+
+if [ $command == "dump" ]
+then
+    check_existence $db_filename
+    echo "Dumping..."
+    sqlite3 $db_filename .dump | grep -v '^CREATE' > $dump_filename
+    echo "Dump finished"
+elif [ $command == "import" ]
+then
+    check_existence $db_filename
+    check_existence $dump_filename
+    echo "Importing..."
+    cat $dump_filename | sqlite3 $db_filename
+    echo "Import finished"
+else
+    echo "Usage: $0 {dump|import} [SQL_FILE=<$DEFAULT_DB_FILENAME> [DUMP_FILE=<$DEFAULT_DUMP_FILENAME>]]"
+fi
+
