@@ -13,8 +13,7 @@ class ReservedBackend:
     _common_clothes = ['outerwear', 'jackets', 'sweaters', 'sweatshirts', 'shirts', 't-shirts', 'trousers', 'jeans',
                        'lingerie']
 
-    def __init__(self, is_first):
-        self.is_first = is_first
+    def __init__(self):
         self._man_clothes = ['polos', 'shorts'] + self._common_clothes
         self._woman_clothes = ['blouses', 'dresses', 'skirts'] + self._common_clothes
 
@@ -25,10 +24,6 @@ class ReservedBackend:
             for c in clothes:
                 json_data = self.get_json_data(new_address.replace('{type}', c))
                 for single_data in json_data:
-                    if self.is_first:
-                        self.is_first = False
-                    else:
-                        print(',')
                     print(json.dumps(self.generate_fashi_json(single_data, gender, c)))
 
     @staticmethod
@@ -72,6 +67,3 @@ class ReservedBackend:
         comp_str = re.search('<h3>Skład materiałowy</h3>(.*?)</div>', html_data, re.MULTILINE | re.DOTALL).group(
             1).strip()
         return [{'percentage_value': x.split(' ')[0], 'name': x.split(' ')[1]} for x in comp_str.split(', ')]
-
-
-
