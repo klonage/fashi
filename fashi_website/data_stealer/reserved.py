@@ -22,9 +22,15 @@ class ReservedBackend:
             new_address = self._main_address.replace('{gender}', gender).replace('{helper}', self._genders[gender])
             clothes = self._man_clothes if gender == 'man' else self._woman_clothes
             for c in clothes:
-                json_data = self.get_json_data(new_address.replace('{type}', c))
-                for single_data in json_data:
-                    print(json.dumps(self.generate_fashi_json(single_data, gender, c)))
+                try:
+                    json_data = self.get_json_data(new_address.replace('{type}', c))
+                    for single_data in json_data:
+                        try:
+                            print(json.dumps(self.generate_fashi_json(single_data, gender, c)))
+                        except:
+                            pass
+                except:
+                    pass
 
     @staticmethod
     def get_json_data(address):

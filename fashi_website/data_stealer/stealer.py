@@ -23,6 +23,7 @@ def get_backend(shop_backend):
 
 
 proc_first = True
+
 for backend in sys.argv[1:]:
     print('[')
     b = get_backend(backend)
@@ -30,6 +31,9 @@ for backend in sys.argv[1:]:
         proc_first = False
     else:
         print(',')
-    get_backend(backend).process()
+    try:
+        get_backend(backend).process()
+    except:
+        sys.stderr.write("whoops")
     print(']')
 
